@@ -28,7 +28,7 @@ public class Main {
             String testString = generateTestString();
             writer.write(testString);
         } catch (IOException e) {
-            System.err.println("Error writing to file: " + e.getMessage());
+            System.err.println("Ошибка записи файла: " + e.getMessage());
         }
     }
 }
