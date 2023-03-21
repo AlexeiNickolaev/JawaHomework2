@@ -8,27 +8,32 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class Main {
+
     public static void main(String[] args) {
-        String testString = repeatString("TEST", 100);
+        String testString = generateTestString();
         System.out.println(testString);
-        writeToFile(testString, "test.txt");
+        writeTestStringToFile("test.txt");
     }
 
-    private static String repeatString(String s, int n) {
+    public static String generateTestString() {
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < n; i++) {
-            sb.append(i+1).append(". ").append(s).append("\n");
+        for (int i = 1; i <= 100; i++) {
+            sb.append(i).append(": TEST\n");
         }
         return sb.toString();
     }
 
-    private static void writeToFile(String s, String fileName) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
-            writer.write(s);
+    public static void writeTestStringToFile(String filename) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
+            String testString = generateTestString();
+            writer.write(testString);
         } catch (IOException e) {
-            System.err.println("Error: " + e.getMessage());
+            System.err.println("Error writing to file: " + e.getMessage());
         }
     }
 }
+
+
+
 
 
